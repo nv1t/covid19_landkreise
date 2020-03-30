@@ -28,6 +28,7 @@ for i in bundeslaender:
         df = df.drop(df.columns[i['remove_columns']],axis=1)
     df.columns = ['Landkreis','Faelle','Inzidenz','Todesfaelle']
     df['Faelle'] = df['Faelle'].astype(str).str.split(' ',n=1,expand=True)
+    df['Faelle'] = df['Faelle'].str.replace('.','').astype(float)
     df['Todesfaelle'] = pd.to_numeric(df['Todesfaelle'],errors='coerce')
     df.insert(0,"Bundesland",i['name'],True)
 
