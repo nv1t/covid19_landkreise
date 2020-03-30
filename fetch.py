@@ -34,5 +34,7 @@ for i in bundeslaender:
     result = pd.concat([result,df])
 
 result.index = pd.Series([dt.datetime.now()]*len(result))
+result['date'] = [d.date() for d in result.index]
+result['time'] = [d.time() for d in result.index]
 
 print(result.to_csv(encoding='latin-1'))
