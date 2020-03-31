@@ -16,7 +16,7 @@ bundeslaender = [
         'name': 'Bayern',
         'url': 'https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm',
         'table': 2,
-        'remove_columns': [2,5] 
+        'remove_columns': [2,4,5]
     }
 ]
 
@@ -27,7 +27,7 @@ for i in bundeslaender:
     if 'remove_columns' in i:
         df = df.drop(df.columns[i['remove_columns']],axis=1)
     df.columns = ['Landkreis','Faelle','Inzidenz','Todesfaelle']
-    df['Faelle'] = df['Faelle'].astype(str).str.split(' ',n=1,expand=True)
+    df['Faelle'] = df['Faelle'].astype(str).str.split(n=1,expand=True)
     df['Faelle'] = df['Faelle'].str.replace('.','').astype(float)
     df['Todesfaelle'] = pd.to_numeric(df['Todesfaelle'],errors='coerce')
     df.insert(0,"Bundesland",i['name'],True)
