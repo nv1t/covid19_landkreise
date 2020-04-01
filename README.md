@@ -1,6 +1,7 @@
 # covid19_landkreise
 short script to aggregate all covid19 cases per "landkreis" and use a Pandas Dataframe.
-currently i fetches it's data through webscraping for each "bundesland".
+
+It fetches it's data through webscraping for each "bundesland" on their respective websites. The sources can be seen below.
 
 # Sources
 
