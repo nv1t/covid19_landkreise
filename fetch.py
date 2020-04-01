@@ -17,9 +17,13 @@ if __name__ == '__main__':
         sys.exit(0)
 
     for module in modules:
-        df = pd.DataFrame()
-        m = importlib.import_module('plugins.'+module)
-        df = m.run()
-        result = pd.concat([result,df])
+        try:
+            df = pd.DataFrame()
+            m = importlib.import_module('plugins.'+module)
+            df = m.run()
+            result = pd.concat([result,df])
+        except:
+            with open('error.log','a') as fh:
+                fh.write("%s [ERR] Module %s\n" % (datetime.datetime.now(),module))
         
     print(result.to_csv(encoding='utf-8'))
