@@ -13,7 +13,6 @@ def run():
     df = pd.read_html(config['url'],decimal=',', thousands='.')[int(config['table'])]
     df = df.drop_duplicates(1,keep=False) # strange tables with lk and town splitted
     df = df[:-1] # remove last line, because it is just time information
-
     df.insert(2,'inzidenz','',True)
     df.columns = ['Landkreis','Faelle','Inzidenz','Todesfaelle']
     df['Faelle'] = df['Faelle'].astype(str).str.split(n=1,expand=True)
