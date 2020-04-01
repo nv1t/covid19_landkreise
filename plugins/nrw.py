@@ -18,6 +18,7 @@ def run():
     df['Faelle'] = df['Faelle'].astype(str).str.split(n=1,expand=True)
     df['Faelle'] = df['Faelle'].str.replace('.','').astype(float)
     df['Todesfaelle'] = pd.to_numeric(df['Todesfaelle'],errors='coerce')
+    df['Inzidenz'] = pd.to_numeric(df['Inzidenz'],errors='coerce')
     df.insert(0,"Bundesland",config['name'],True)
 
     df.index = pd.Series([dt.datetime.now()]*len(df))
