@@ -14,7 +14,7 @@ def run():
     if 'remove_columns' in config:
         df = df.drop(df.columns[config['remove_columns']],axis=1)
     df.columns = ['Landkreis','Faelle','Inzidenz','Todesfaelle']
-    df['Faelle'] = df['Faelle'].str.extract('(\d+)', expand=True)
+    df['Faelle'] = df['Faelle'].astype(str).str.split('(',n=1,expand=True)
     df['Faelle'] = df['Faelle'].str.replace('.','').astype(float)
     df['Todesfaelle'] = pd.to_numeric(df['Todesfaelle'],errors='coerce')
     df['Inzidenz'] = pd.to_numeric(df['Inzidenz'], errors='coerce')
