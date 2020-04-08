@@ -5,7 +5,8 @@ def run():
     config = {   
         'name': 'Nordrhein-Westfalen',
         'url': 'https://www.mags.nrw/coronavirus-fallzahlen-nrw',
-        'table': 0
+        'table': 0,
+        'remove_columns': [3]
     }
     
     df = pd.DataFrame()
