@@ -4,8 +4,9 @@ import datetime as dt
 def run():
     config = {   
         'name': 'Schleswig-Holstein',
-        'url': 'https://www.schleswig-holstein.de/DE/Landesregierung/I/Presse/_documents/Corona-Liste_Kreise.html',
-        'table': 0
+        'url': 'https://www.schleswig-holstein.de/DE/Schwerpunkte/Coronavirus/Zahlen/zahlen_node.html',
+        'table': 0,
+        'remove_columns': [2,4]
     }
     
     df = pd.DataFrame()
@@ -14,7 +15,6 @@ def run():
     if 'remove_columns' in config:
         df = df.drop(df.columns[config['remove_columns']],axis=1)
     df.insert(2,'Inzidenz','',True)
-    df.insert(3,'Todesfaelle','',True)
     df.columns = ['Landkreis','Faelle','Inzidenz','Todesfaelle']
     df['Faelle'] = df['Faelle'].astype(str).str.split(n=1,expand=True)
     df['Faelle'] = df['Faelle'].str.replace('.','').astype(float)
