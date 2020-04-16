@@ -6,7 +6,7 @@ def run():
         'name': 'Hessen',
         'url': 'https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2/taegliche-uebersicht-der-bestaetigten-sars-cov-2-faelle-hessen',
         'table': 0,
-        'remove_columns': [3,4]
+        'remove_columns': [3,4,5]
     }
     
     df = pd.DataFrame()
