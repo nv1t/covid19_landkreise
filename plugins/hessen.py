@@ -6,7 +6,7 @@ def run():
         'name': 'Hessen',
         'url': 'https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2/taegliche-uebersicht-der-bestaetigten-sars-cov-2-faelle-hessen',
         'table': 0,
-        'remove_columns': [3,4,5]
+        'remove_columns': [2,5,6]
     }
     
     df = pd.DataFrame()
@@ -15,8 +15,7 @@ def run():
     if 'remove_columns' in config:
         df = df.drop(df.columns[config['remove_columns']],axis=1)
     df = df[2:]
-    df.insert(2,'Inzidenz','',True)
-    df.columns = ['Landkreis','Faelle','Inzidenz','Todesfaelle']
+    df.columns = ['Landkreis','Faelle','Todesfaelle','Inzidenz']
     df['Faelle'] = df['Faelle'].astype(str).str.split(n=1,expand=True)
     df['Faelle'] = df['Faelle'].str.replace('.','').astype(float)
     df['Todesfaelle'] = pd.to_numeric(df['Todesfaelle'],errors='coerce')
